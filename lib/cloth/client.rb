@@ -1,3 +1,4 @@
+require 'json'
 require 'typhoeus'
 
 module Cloth
@@ -9,12 +10,12 @@ module Cloth
     end
 
     def get(url, options = {})
-      request(:get, url, options).run
+      JSON.parse(request(:get, url, options).run.body)
     end
 
     def post(url, options = {})
       headers = { 'Content-Type': "application/x-www-form-urlencoded" }
-      request(:post, url, options.merge({ headers: headers })).run
+      JSON.parse(request(:post, url, options.merge({ headers: headers })).run.body)
     end
 
     def request(method, url, options = {})

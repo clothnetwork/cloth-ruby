@@ -19,7 +19,12 @@ module Cloth
     end
 
     def recommendations
-      Cloth.client.get("/api/items/#{id}/recommendations")
+      resp = Cloth.client.get("/api/items/#{id}/recommendations")
+      if resp['recommendations']
+        resp['recommendations']
+      else
+        resp
+      end
     end
 
     class << self
