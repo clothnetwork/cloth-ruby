@@ -20,8 +20,9 @@ module Cloth
 
     def request(method, url, options = {})
       fixed_url = url[0] == "/" ? url[1..-1] : url
+      url = [Cloth.api_url, fixed_url].join('/')
       Typhoeus::Request.new(
-        [Cloth.api_url, fixed_url].join('/'),
+        url,
         method: method,
         body: options[:body],
         params: options[:params],

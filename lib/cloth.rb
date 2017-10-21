@@ -1,3 +1,4 @@
+require "cloth/account"
 require "cloth/client"
 require "cloth/item"
 require "cloth/user"
